@@ -4,6 +4,7 @@ export class HeroModel {
     public name: string,
     public alias: string,
     public powers: string[],
-    public team: string
+    public team: string,
+    public img: string
   ) {}
 }

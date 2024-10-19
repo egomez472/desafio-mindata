@@ -5,70 +5,80 @@
       "name": "Peter Parker",
       "alias": "Spider-Man",
       "powers": ["Super strength", "Wall-crawling", "Spider-sense", "Agility"],
-      "team": "Avengers"
+      "team": "Avengers",
+      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729308608208?alt=media&token=488b54d5-2d5d-4ce9-9d7d-40706ff17c0d"
     },
     {
       "id": 2,
       "name": "Tony Stark",
       "alias": "Iron Man",
       "powers": ["Genius intellect", "Powered armor suit", "Energy repulsors"],
-      "team": "Avengers"
+      "team": "Avengers",
+      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729312048378?alt=media&token=7b06f225-82d0-47f7-8827-02c9d8f16cb5"
     },
     {
       "id": 3,
       "name": "Steve Rogers",
       "alias": "Captain America",
       "powers": ["Enhanced strength", "Agility", "Vibranium shield"],
-      "team": "Avengers"
+      "team": "Avengers",
+      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729316007841?alt=media&token=4b37ca4b-7152-414c-9a2a-491c4f76dfad"
     },
     {
       "id": 4,
       "name": "Natasha Romanoff",
       "alias": "Black Widow",
       "powers": ["Master spy", "Martial artist", "Expert marksman"],
-      "team": "Avengers"
+      "team": "Avengers",
+      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729316314013?alt=media&token=a81138fa-3e8c-40f7-9635-a8ae6d5fcc1e"
     },
     {
       "id": 5,
       "name": "Bruce Banner",
       "alias": "Hulk",
       "powers": ["Super strength", "Invulnerability", "Regeneration"],
-      "team": "Avengers"
+      "team": "Avengers",
+      "img":"https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729318066439?alt=media&token=5993382d-9495-45ad-a179-7485a4e6bc95"
     },
     {
       "id": 6,
       "name": "Thor Odinson",
       "alias": "Thor",
       "powers": ["Super strength", "Weather control", "Flight", "Immortality"],
-      "team": "Avengers"
+      "team": "Avengers",
+      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729318176148?alt=media&token=b6103d43-f7f0-4953-b54d-544626695ecc"
     },
     {
       "id": 7,
       "name": "T'Challa",
       "alias": "Black Panther",
       "powers": ["Enhanced strength", "Agility", "Vibranium suit"],
-      "team": "Avengers"
+      "team": "Avengers",
+      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729318376881?alt=media&token=9f743803-e1ad-42df-ae99-b22aaa12c992"
     },
     {
       "id": 8,
       "name": "Wanda Maximoff",
       "alias": "Scarlet Witch",
       "powers": ["Reality manipulation", "Telekinesis", "Energy blasts"],
-      "team": "Avengers"
+      "team": "Avengers",
+      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729318447869?alt=media&token=e2eb25c8-8154-4c56-83b3-62607874abaf"
     },
     {
       "id": 9,
       "name": "Stephen Strange",
       "alias": "Doctor Strange",
       "powers": ["Sorcery", "Time manipulation", "Dimensional travel"],
-      "team": "Defenders"
+      "team": "Defenders",
+      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729318507145?alt=media&token=25814e17-89fd-4576-b782-e2a8fd0e9188"
     },
     {
       "id": 10,
       "name": "Wade Wilson",
       "alias": "Deadpool",
       "powers": ["Regeneration", "Agility", "Expert swordsman"],
-      "team": "X-Force"
+      "team": "X-Force",
+      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729318556741?alt=media&token=856e6f35-ada0-4696-93b3-4fd03b9a3c05"
     }
   ]
 }

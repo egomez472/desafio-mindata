@@ -1,5 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Marvel:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 html, body {
   height: 100%;
   margin: 0;
+  font-family: "Marvel", sans-serif;
+}
+
+span, h1, h2, h3, h4, h5, h6, p {
+  font-family: "Marvel", sans-serif;
 }

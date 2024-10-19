@@ -1,17 +1,14 @@
-/* El contenedor principal con flexbox */
 .app-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Para que ocupe toda la altura de la ventana */
+  min-height: 100vh;
 }
 
-/* El contenido debe crecer según el tamaño necesario */
 .content {
-  flex-grow: 1; /* Hace que este div crezca para ocupar el espacio disponible */
-  padding: 20px; /* Ajusta el padding según tu necesidad */
+  flex-grow: 1;
+  padding: 0.5rem;
 }
 
-/* El footer estará al final */
 app-footer {
-  flex-shrink: 0; /* El footer no se colapsa */
+  flex-shrink: 0;
 }

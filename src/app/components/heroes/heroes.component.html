@@ -5,4 +5,14 @@
 
   <img width="300px" [src]="heroImage" alt="">
 
+  @if (heroesList().length > 0) {
+
+    <div class="heroes-list">
+      @for(hero of heroesList(); track hero.id) {
+        <app-hero-card [hero]="hero"></app-hero-card>
+      }
+    </div>
+
+  }
+
 </div>

@@ -3,6 +3,8 @@ export const environment: any = {
   name: 'Development',
   production: false,
 
+  apiUrl: "http://localhost:3000",
+
   firebaseConfig: {
     apiKey: "AIzaSyD3xWqUdEk3IX-sofX3EtsyyXYXMgLJZDE",
     authDomain: "heroes-proyect-b95d8.firebaseapp.com",
