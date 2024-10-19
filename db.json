@@ -1,0 +1,74 @@
+{
+  "heroes": [
+    {
+      "id": 1,
+      "name": "Peter Parker",
+      "alias": "Spider-Man",
+      "powers": ["Super strength", "Wall-crawling", "Spider-sense", "Agility"],
+      "team": "Avengers"
+    },
+    {
+      "id": 2,
+      "name": "Tony Stark",
+      "alias": "Iron Man",
+      "powers": ["Genius intellect", "Powered armor suit", "Energy repulsors"],
+      "team": "Avengers"
+    },
+    {
+      "id": 3,
+      "name": "Steve Rogers",
+      "alias": "Captain America",
+      "powers": ["Enhanced strength", "Agility", "Vibranium shield"],
+      "team": "Avengers"
+    },
+    {
+      "id": 4,
+      "name": "Natasha Romanoff",
+      "alias": "Black Widow",
+      "powers": ["Master spy", "Martial artist", "Expert marksman"],
+      "team": "Avengers"
+    },
+    {
+      "id": 5,
+      "name": "Bruce Banner",
+      "alias": "Hulk",
+      "powers": ["Super strength", "Invulnerability", "Regeneration"],
+      "team": "Avengers"
+    },
+    {
+      "id": 6,
+      "name": "Thor Odinson",
+      "alias": "Thor",
+      "powers": ["Super strength", "Weather control", "Flight", "Immortality"],
+      "team": "Avengers"
+    },
+    {
+      "id": 7,
+      "name": "T'Challa",
+      "alias": "Black Panther",
+      "powers": ["Enhanced strength", "Agility", "Vibranium suit"],
+      "team": "Avengers"
+    },
+    {
+      "id": 8,
+      "name": "Wanda Maximoff",
+      "alias": "Scarlet Witch",
+      "powers": ["Reality manipulation", "Telekinesis", "Energy blasts"],
+      "team": "Avengers"
+    },
+    {
+      "id": 9,
+      "name": "Stephen Strange",
+      "alias": "Doctor Strange",
+      "powers": ["Sorcery", "Time manipulation", "Dimensional travel"],
+      "team": "Defenders"
+    },
+    {
+      "id": 10,
+      "name": "Wade Wilson",
+      "alias": "Deadpool",
+      "powers": ["Regeneration", "Agility", "Expert swordsman"],
+      "team": "X-Force"
+    }
+  ]
+}
