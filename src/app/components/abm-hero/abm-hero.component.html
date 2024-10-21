@@ -20,12 +20,14 @@
         <mat-form-field>
           <mat-label>Alias</mat-label>
           <input matInput type="text" formControlName="alias" appUppercaseInput>
+          <mat-error>Alias is required</mat-error>
         </mat-form-field>
 
         <!-- Nombre -->
         <mat-form-field>
           <mat-label>Name</mat-label>
           <input matInput type="text" formControlName="name">
+          <mat-error>Name is required</mat-error>
         </mat-form-field>
 
         <!-- Poderes -->
@@ -44,12 +46,14 @@
               [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
               (matChipInputTokenEnd)="add($event)" />
           </mat-chip-grid>
+          <mat-error>Powers is required</mat-error>
         </mat-form-field>
 
         <!-- Equipo -->
         <mat-form-field>
           <mat-label>Team</mat-label>
           <input matInput type="text" formControlName="team">
+          <mat-error>Team is required</mat-error>
         </mat-form-field>
 
         <!-- Botones -->

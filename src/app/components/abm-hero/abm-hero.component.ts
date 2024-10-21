@@ -59,13 +59,10 @@ export class ABMHeroComponent implements OnInit {
   form!: FormGroup;
   heroImage: any[] = [DEFAULT_IMAGE, null];
 
-  fileName = signal('No file uploaded yet.');
-
   ngOnInit(): void {
     if (Boolean(this.edit)) {
       this.title = 'Edit hero'
       this.heroesSvc.getHero(this.edit).subscribe(hero => {
-        console.log(hero);
         this.idControl?.setValue(hero.id);
         this.nameControl?.setValue(hero.name);
         this.aliasControl?.setValue(hero.alias);
@@ -117,7 +114,6 @@ export class ABMHeroComponent implements OnInit {
     reader.readAsDataURL(file[0]);
 
     reader.onloadend = async () => {
-      this.fileName.update(_ => file[0].name);
       this.heroImage = [reader.result, file[0]];
     }
   }
@@ -132,9 +128,10 @@ export class ABMHeroComponent implements OnInit {
       // this.loadingSvc.show();
       if (Boolean(this.edit)) {
         this.editHero(form.value);
-      } else {
-        this.addHero();
+        return;
       }
+
+      this.addHero();
 
     }
   }
@@ -156,7 +153,7 @@ export class ABMHeroComponent implements OnInit {
 
   async addHero() {
     // Subo la img primero a firebase
-    if(this.imgControl?.value !== DEFAULT_IMAGE) {
+    if(this.heroImage[1] !== null) {
       await this.uploadImgToFirebase()
     }
 
