@@ -28,8 +28,6 @@ export class HeroesComponent implements OnInit {
   heroesList = this.heroesSvc.heroesList;
 
   ngOnInit(): void {
-    console.log(this.page);
-
     this.heroesSvc.getHeroes()?.subscribe((data) => {
       if(this.heroesSvc.heroesList !== undefined && this.heroesSvc.originalHeroesList !== undefined) {
         this.heroesSvc.heroesList.set(data)// Actualizo la signal con los héroes recibidos

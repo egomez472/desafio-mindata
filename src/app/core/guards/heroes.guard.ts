@@ -6,9 +6,6 @@ export const heroesGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   const queryParams = route.queryParams;
 
-  console.log(state.url);
-
-
   if (state.url == '/heroes' && !queryParams['page']) {
     router.navigate(['/heroes'], { queryParams: { page: 1 } });
     return false;
