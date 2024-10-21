@@ -31,13 +31,13 @@ const modules = [
 ]
 
 @Component({
-  selector: 'app-add-hero',
+  selector: 'app-abm-hero',
   standalone: true,
   imports: modules,
-  templateUrl: './add-edit-hero.component.html',
-  styleUrl: './add-edit-hero.component.scss'
+  templateUrl: './abm-hero.component.html',
+  styleUrl: './abm-hero.component.scss'
 })
-export class AddEditHeroComponent implements OnInit {
+export class ABMHeroComponent implements OnInit {
 
   private readonly announcer = inject(LiveAnnouncer);
   private readonly heroesSvc = inject(HeroesService);

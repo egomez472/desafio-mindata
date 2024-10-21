@@ -9,7 +9,7 @@ export const routes: Routes = [
   },
   {
     path: 'add-hero',
-    loadComponent: () => import('./components/add-edit-hero/add-edit-hero.component').then(c => c.AddEditHeroComponent)
+    loadComponent: () => import('./components/abm-hero/abm-hero.component').then(c => c.ABMHeroComponent)
   },
   {
     path: '**',
