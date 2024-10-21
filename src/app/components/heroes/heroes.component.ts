@@ -37,7 +37,7 @@ export class HeroesComponent implements OnInit {
   }
 
   //#region ngx-pagination functions
-  trackById(index: number, hero: any): number {
+  trackById(hero: any): number {
     if(hero) {
       return hero.id;
     } else {
