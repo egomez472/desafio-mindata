@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { FirebaseStorage, getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
-import { delay, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Hero, HeroModel } from '../models/hero.model';
 
@@ -57,5 +57,9 @@ export class HeroesService {
 
   editHero(hero: Hero): Observable<Hero> {
     return this.http.put<HeroModel>(`${this.apiUrl}/heroes/${hero.id}`, hero)
+  }
+
+  deleteHero(heroId: any): any {
+    return this.http.delete<HeroModel>(`${this.apiUrl}/heroes/${heroId}`);
   }
 }

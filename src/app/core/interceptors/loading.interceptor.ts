@@ -10,7 +10,7 @@ export const loadingInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(req)
     .pipe(
-      delay(1000), //delay de 1s para simular una peticion un poco mas prolongada y apreciar el loading
+      delay(500), //delay de 500ms para simular una peticion un poco mas prolongada y apreciar el loading
       finalize(() => {
         loadingSvc.hide()
       })

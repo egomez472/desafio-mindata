@@ -30,9 +30,11 @@ export class HeroesComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.page);
 
-    this.heroesSvc.getHeroes().subscribe((data) => {
-      this.heroesSvc.heroesList.set(data)// Actualizo la signal con los héroes recibidos
-      this.heroesSvc.originalHeroesList.set(data);
+    this.heroesSvc.getHeroes()?.subscribe((data) => {
+      if(this.heroesSvc.heroesList !== undefined && this.heroesSvc.originalHeroesList !== undefined) {
+        this.heroesSvc.heroesList.set(data)// Actualizo la signal con los héroes recibidos
+        this.heroesSvc.originalHeroesList.set(data);
+      }
     });
   }
 

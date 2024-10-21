@@ -5,6 +5,8 @@ export const environment: any = {
 
   apiUrl: "http://localhost:3000",
 
+  defaultHeroImg: "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729539161204?alt=media&token=9da83a22-81cc-4d7c-9af5-424d32294a1c",
+
   firebaseConfig: {
     apiKey: "AIzaSyD3xWqUdEk3IX-sofX3EtsyyXYXMgLJZDE",
     authDomain: "heroes-proyect-b95d8.firebaseapp.com",

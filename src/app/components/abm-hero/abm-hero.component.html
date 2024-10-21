@@ -30,7 +30,7 @@
 
         <!-- Poderes -->
         <mat-form-field>
-          <mat-label>Powers</mat-label>
+          <mat-label>Powers or abilities</mat-label>
           <mat-chip-grid formControlName="powers" #chipGrid aria-label="Enter fruits">
             @for (power of powers(); track power) {
             <mat-chip-row (removed)="remove(power)" [editable]="true" [aria-description]="'press enter to edit ' + power">
@@ -66,7 +66,7 @@
 
            @if(this.edit !== undefined) {
             <button mat-raised-button color="warn" type="button" class="upload-btn"
-              (click)="deleteHero()">
+              (click)="deleteHero(form.value)">
                <span>Delete hero</span>
             </button>
           }

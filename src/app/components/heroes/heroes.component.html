@@ -1,11 +1,11 @@
 <div class="heroes-container">
 
   @if(!loadingSvc.isLoading()) {
-    @if (heroesList().length > 0) {
+    @if (this.heroesSvc.heroesList().length > 0) {
       <div class="heroes-list">
         <!-- Se usa *ngFor y no @for por incompatibilidad de ngx-pagination -->
         <app-hero-card
-          *ngFor="let hero of heroesList() | paginate: { itemsPerPage: 9, currentPage: page }; trackBy: trackById"
+          *ngFor="let hero of this.heroesSvc.heroesList() | paginate: { itemsPerPage: 9, currentPage: page }; trackBy: trackById"
           [hero]="hero">
         </app-hero-card>
       </div>

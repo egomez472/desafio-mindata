@@ -1,0 +1,15 @@
+.dialog-box {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+  font-size: 24px;
+  background-color: black;
+  color: white;
+
+  .buttons-box {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+}

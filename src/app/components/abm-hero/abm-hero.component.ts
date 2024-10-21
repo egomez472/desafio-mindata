@@ -2,7 +2,7 @@ import { Component, inject, Input, OnInit, signal } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
 import { CommonModule } from '@angular/common';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -16,16 +16,11 @@ import { Hero, HeroModel } from '../../core/models/hero.model';
 import { UppercaseInputDirective } from '../../shared/directives/uppercase-input.directive';
 import { Router } from '@angular/router';
 import { LoadingService } from '../../core/services/loading.service';
-import {
-  MatDialog,
-  MatDialogRef,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogTitle,
-  MatDialogContent,
-} from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { AbmDialogComponent } from '../../shared/dialog/abm-dialog/abm-dialog.component';
+import { environment } from '../../environments/environment';
 
-const DEFAULT_IMAGE = 'assets/img/hero-default.png'
+const DEFAULT_IMAGE = environment.defaultHeroImg;
 const modules = [
   LoadingComponent,
   CommonModule,
@@ -35,7 +30,8 @@ const modules = [
   MatChipsModule,
   MatIconModule,
   MatButtonModule,
-  UppercaseInputDirective
+  UppercaseInputDirective,
+  MatDialogModule
 ]
 
 @Component({
@@ -52,6 +48,8 @@ export class ABMHeroComponent implements OnInit {
   private readonly announcer = inject(LiveAnnouncer);
   private readonly heroesSvc = inject(HeroesService);
   private readonly router = inject(Router);
+  private readonly dialog = inject(MatDialog);
+
   readonly loadingSvc = inject(LoadingService);
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   readonly powers = signal(['Agility', 'Super strength']);
@@ -79,14 +77,13 @@ export class ABMHeroComponent implements OnInit {
       })
     }
 
-
     this.form = new FormGroup({
       id: new FormControl(''),
-      name: new FormControl(''),
-      alias: new FormControl(''),
-      powers: new FormControl(this.powers()),
-      team: new FormControl(''),
-      img: new FormControl('')
+      name: new FormControl('', Validators.required),
+      alias: new FormControl('', Validators.required),
+      powers: new FormControl(this.powers(), Validators.required),
+      team: new FormControl('', Validators.required),
+      img: new FormControl(this.heroImage[0])
     })
   }
 
@@ -125,6 +122,11 @@ export class ABMHeroComponent implements OnInit {
     }
   }
 
+  async uploadImgToFirebase() {
+    let imgSrc = await this.heroesSvc.uploadHeroImage(`hero-image_${new Date().getTime()}`, this.heroImage[1]);
+    this.imgControl?.setValue(imgSrc);
+  }
+
   async onSubmit(form: FormGroup) {
     if (form.valid) {
       // this.loadingSvc.show();
@@ -138,9 +140,8 @@ export class ABMHeroComponent implements OnInit {
   }
 
   async editHero(hero: Hero) {
-    this.loadingSvc.show();
     if (hero.img !== this.heroImage[0]) {
-      await this.uploadImg();
+      await this.uploadImgToFirebase();
     }
     this.heroesSvc.editHero(this.form.value).subscribe(
       response => {
@@ -153,22 +154,15 @@ export class ABMHeroComponent implements OnInit {
     )
   }
 
-  async uploadImg() {
-    let imgSrc = await this.heroesSvc.uploadHeroImage(`hero-image_${new Date().getTime()}`, this.heroImage[1]);
-    this.imgControl?.setValue(imgSrc);
-  }
-
   async addHero() {
-    this.loadingSvc.show();
-
-    // Subo el archivo primero a firebase y luego lo seteo al form para enviar al servicio
-    if (this.heroImage[0] !== DEFAULT_IMAGE) {
-      await this.uploadImg()
+    // Subo la img primero a firebase
+    if(this.imgControl?.value !== DEFAULT_IMAGE) {
+      await this.uploadImgToFirebase()
     }
 
     let hero = new HeroModel(
       this.nameControl?.value,
-      this.aliasControl?.value,
+      this.aliasControl?.value.toUpperCase(),
       this.powersControl?.value,
       this.teamControl?.value,
       this.imgControl?.value
@@ -183,8 +177,20 @@ export class ABMHeroComponent implements OnInit {
     );
   }
 
-  deleteHero() {
-    // this.heroesSvc.de
+  deleteHero(hero: Hero) {
+    const dialogRef = this.dialog.open(AbmDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result && Boolean(hero.id)) {
+        this.heroesSvc.deleteHero(hero.id).subscribe(
+          (response: any) => {
+            if(response) {
+              this.router.navigate(['heroes']);
+            }
+          }
+        )
+      }
+    });
   }
 
 
