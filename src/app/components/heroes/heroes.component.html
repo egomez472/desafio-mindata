@@ -1,15 +1,16 @@
 <div style="display: flex;flex-direction: column;">
 
-  <button style="width: 100px;" (click)="navigate('add-hero')">Add hero</button>
-
   @if (heroesList().length > 0) {
-
     <div class="heroes-list">
-      @for(hero of heroesList(); track hero.id) {
-        <app-hero-card [hero]="hero"></app-hero-card>
-      }
+      <!-- Se usa *ngFor y no @for por incompatibilidad de ngx-pagination -->
+      <app-hero-card
+      *ngFor="let hero of heroesList() | paginate: { itemsPerPage: 5, currentPage: p() }; trackBy: trackById"
+      [hero]="hero">
+
+    </app-hero-card>
     </div>
-
   }
-
+  <div class="pagination-box">
+    <pagination-controls class="my-pagination" (pageChange)="onPageChange($event)"></pagination-controls>
+  </div>
 </div>

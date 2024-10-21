@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve -o",
     "server": "json-server --watch db.json",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
@@ -24,6 +24,7 @@
     "@angular/router": "^17.3.0",
     "firebase": "^10.14.1",
     "json-server": "^1.0.0-beta.3",
+    "ngx-pagination": "^6.0.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

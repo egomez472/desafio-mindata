@@ -4,3 +4,36 @@
   flex-flow: wrap;
   justify-content: center;
 }
+
+
+.pagination-box {
+  display: flex;
+
+  .my-pagination {
+    margin-left: auto;
+  }
+  ::ng-deep pagination-template {
+    display: flex;
+    justify-content: center;
+    background-color: black;
+  }
+
+  .my-pagination ::ng-deep .ngx-pagination {
+    margin: 0;
+    padding-inline: 0;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    .current {
+      background: red;
+    }
+
+    a {
+      color: white;
+
+      &:hover {
+        background-color: #313131;
+      }
+    }
+  }
+}
