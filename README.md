@@ -23,7 +23,7 @@ Proyecto creado con Angular 17
 
 1. Tener instalado Node 18.20.4
 2. Correr el comando `npm install` en la terminal, ubicado en la carpeta raiz del proyecto.
-3. Correr el comando `npm run server` para correr el "servidor" con *json-server*.
+3. Correr el comando `npm run server` en una terminal aparte ubicado en la carpeta raiz del proyecto para correr el "servidor" con *json-server*. `IMPORTANTE`
 4. Correr el comando `npm start` para que se inice el proyecto y se abra automaticamente en su navegador predeterminado.
 
 #### Para correr los test
@@ -65,7 +65,10 @@ Proyecto creado con Angular 17
 
 ### Shared
 `src/app/shared`
-- ***Components*** contiene componentes mapeables como HeroCardComponent y LoadingComponent
-- ***Dialog*** contiene el componente para utilizar con MatDialog en el metodo DELETE de un heroe
-- ***Directives*** contiene la directiva UppercaseInputDirective para que el texto dentro de un input se mantengan en mayusculas
+- ***Components*** contiene componentes mapeables como HeroCardComponent y LoadingComponent.
+- ***Dialog*** contiene el componente para utilizar con MatDialog en el metodo DELETE de un heroe.
+- ***Directives*** contiene la directiva UppercaseInputDirective para que el texto dentro de un input se mantengan en mayusculas.
+
+---
+Nota: cualquier comentario o feedback es bienvenido, me diverti codeando unas horas con este desafio, ¡gracias por su tiempo!
 
