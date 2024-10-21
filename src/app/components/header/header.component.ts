@@ -36,7 +36,12 @@ export class HeaderComponent implements OnInit {
     )
   }
 
-  navigate(url: string) {
+  acceptContent() {
+    return this.routePath.includes('/heroes');
+  }
+
+  navigate(url: string, params?: number) {
+    params ? this.router.navigate([url], {queryParams: {page: params}}) :
     this.router.navigate([url]);
   }
 

@@ -121,6 +121,17 @@
       ],
       "team": "X-Force",
       "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729318556741?alt=media&token=856e6f35-ada0-4696-93b3-4fd03b9a3c05"
+    },
+    {
+      "id": "2cab",
+      "name": "",
+      "alias": "",
+      "powers": [
+        "Agility",
+        "Super strength"
+      ],
+      "team": "",
+      "img": ""
     }
   ]
 }

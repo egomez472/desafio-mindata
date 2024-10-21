@@ -1,5 +1,5 @@
 import { ApplicationConfig } from '@angular/core';
-import { provideRouter, withComponentInputBinding, withHashLocation, withViewTransitions } from '@angular/router';
+import { provideRouter, withComponentInputBinding, withHashLocation, withRouterConfig, withViewTransitions  } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
@@ -11,8 +11,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(
       routes,
       withComponentInputBinding(),
-      withViewTransitions(),
-      withHashLocation()
+      withViewTransitions()
     ),
     provideHttpClient(
       withFetch(),

@@ -5,7 +5,7 @@
       <div class="heroes-list">
         <!-- Se usa *ngFor y no @for por incompatibilidad de ngx-pagination -->
         <app-hero-card
-          *ngFor="let hero of heroesList() | paginate: { itemsPerPage: 5, currentPage: p() }; trackBy: trackById"
+          *ngFor="let hero of heroesList() | paginate: { itemsPerPage: 9, currentPage: page }; trackBy: trackById"
           [hero]="hero">
         </app-hero-card>
       </div>
