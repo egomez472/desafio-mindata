@@ -6,17 +6,21 @@ import { Hero, HeroModel } from '../../core/models/hero.model';
 import { CommonModule, NgFor } from '@angular/common';
 import { Router } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { delay, take } from 'rxjs';
+import { LoadingService } from '../../core/services/loading.service';
+import { LoadingComponent } from '../../shared/components/loading/loading.component';
 
 @Component({
   selector: 'app-heroes',
   standalone: true,
-  imports: [HeroCardComponent, CommonModule, NgFor, NgxPaginationModule],
+  imports: [HeroCardComponent, CommonModule, NgFor, NgxPaginationModule, LoadingComponent],
   templateUrl: './heroes.component.html',
   styleUrl: './heroes.component.scss'
 })
 export class HeroesComponent implements OnInit {
 
   private readonly router = inject(Router);
+  readonly loadingSvc = inject(LoadingService)
   readonly heroesSvc = inject(HeroesService);
 
   p = signal(1);

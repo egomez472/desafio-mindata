@@ -5,17 +5,21 @@
       <img width="200" src="assets/img/marvel-logo.svg" alt="">
     </div>
 
-    <div class="search-input-box">
-      <input type="text" [formControl]="searchControl" placeholder="Search hero...">
-    </div>
+    @if(routePath === '/heroes') {
+      <div class="search-input-box">
+        <input type="text" [formControl]="searchControl" placeholder="Search hero...">
+      </div>
+    }
   </div>
 
-  <div class="add-hero" (click)="navigate('add-hero')">
-    <div class="add-hero-btn">
-      <div class="separator"></div>
-      <span>
-        Add hero
-      </span>
+  @if(routePath === '/heroes') {
+    <div class="add-hero" (click)="navigate('add-hero')">
+      <div class="add-hero-btn">
+        <div class="separator"></div>
+        <span>
+          Add hero
+        </span>
+      </div>
     </div>
-  </div>
+  }
 </div>

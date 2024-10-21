@@ -22,8 +22,13 @@ export class HeaderComponent implements OnInit {
   private readonly heroesSvc = inject(HeroesService);
 
   searchControl = new FormControl('')
+  routePath: string = '';
 
   ngOnInit(): void {
+    this.router.events.subscribe(_ => {
+      this.routePath = this.router.url;
+    });
+
     this.searchControl.valueChanges.pipe(debounceTime(0)).subscribe(
       (alias) => {
         this.heroesSvc.getHeroesByAlias(alias ? alias : '')

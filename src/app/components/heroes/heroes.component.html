@@ -1,20 +1,26 @@
 <div class="heroes-container">
 
-  @if (heroesList().length > 0) {
-    <div class="heroes-list">
-      <!-- Se usa *ngFor y no @for por incompatibilidad de ngx-pagination -->
-      <app-hero-card
-        *ngFor="let hero of heroesList() | paginate: { itemsPerPage: 5, currentPage: p() }; trackBy: trackById"
-        [hero]="hero">
-      </app-hero-card>
-    </div>
+  @if(!loadingSvc.isLoading()) {
+    @if (heroesList().length > 0) {
+      <div class="heroes-list">
+        <!-- Se usa *ngFor y no @for por incompatibilidad de ngx-pagination -->
+        <app-hero-card
+          *ngFor="let hero of heroesList() | paginate: { itemsPerPage: 5, currentPage: p() }; trackBy: trackById"
+          [hero]="hero">
+        </app-hero-card>
+      </div>
 
-    <div class="pagination-box">
-      <pagination-controls class="my-pagination" (pageChange)="onPageChange($event)"></pagination-controls>
-    </div>
+      <div class="pagination-box">
+        <pagination-controls class="my-pagination" (pageChange)="onPageChange($event)"></pagination-controls>
+      </div>
+    } @else {
+      <div class="no-heroes-box">
+        <span>No se encontraron heroes con ese nombre</span>
+      </div>
+    }
   } @else {
-    <div class="no-heroes-box">
-      <span>No se encontraron heroes con ese nombre</span>
+    <div class="loading-box">
+      <app-loading></app-loading>
     </div>
   }
 </div>

@@ -1,71 +1,75 @@
-<div class="container">
-  <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+@if(loadingSvc.isLoading() === false) {
+  <div class="container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
 
-    <!-- Bloque de subida de imagen para el heroe -->
-    <div class="hero-picture-box">
-      <input id="inputFile" #fileUpload type="file" placeholder="Subir imagen" accept=".jpg, .png, .jpeg" (change)="uploadImage($event)" >
+      <!-- Bloque de subida de imagen para el heroe -->
+      <div class="hero-picture-box">
+        <input id="inputFile" #fileUpload type="file" placeholder="Subir imagen" accept=".jpg, .png, .jpeg" (change)="uploadImage($event)" >
 
-      <!-- Vista previa de la imagen subida -->
-      <div class="hero-img-box">
-        <img width="300px" [src]="heroImage[0]" alt="">
+        <!-- Vista previa de la imagen subida -->
+        <div class="hero-img-box">
+          <img width="300px" [src]="heroImage[0]" alt="">
+        </div>
       </div>
-    </div>
 
 
-    <!-- Inputs del fomulario -->
-    <div class="inputs-form">
-      <span class="title-form">Add hero</span>
-      <!-- Alias -->
-      <mat-form-field>
-        <mat-label>Alias</mat-label>
-        <input matInput type="text" formControlName="alias" appUppercaseInput>
-      </mat-form-field>
+      <!-- Inputs del fomulario -->
+      <div class="inputs-form">
+        <span class="title-form">Add hero</span>
+        <!-- Alias -->
+        <mat-form-field>
+          <mat-label>Alias</mat-label>
+          <input matInput type="text" formControlName="alias" appUppercaseInput>
+        </mat-form-field>
 
-      <!-- Nombre -->
-      <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input matInput type="text" formControlName="name">
-      </mat-form-field>
+        <!-- Nombre -->
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput type="text" formControlName="name">
+        </mat-form-field>
 
-      <!-- Poderes -->
-      <mat-form-field>
-        <mat-label>Powers</mat-label>
-        <mat-chip-grid formControlName="powers" #chipGrid aria-label="Enter fruits">
-          @for (power of powers(); track power) {
-          <mat-chip-row (removed)="remove(power)" [editable]="true" [aria-description]="'press enter to edit ' + power">
-            {{power}}
-            <button matChipRemove type="button" [attr.aria-label]="'remove ' + power">
-              <mat-icon>cancel</mat-icon>
-            </button>
-          </mat-chip-row>
-          }
-          <input placeholder="New power..." [matChipInputFor]="chipGrid"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-            (matChipInputTokenEnd)="add($event)" />
-        </mat-chip-grid>
-      </mat-form-field>
+        <!-- Poderes -->
+        <mat-form-field>
+          <mat-label>Powers</mat-label>
+          <mat-chip-grid formControlName="powers" #chipGrid aria-label="Enter fruits">
+            @for (power of powers(); track power) {
+            <mat-chip-row (removed)="remove(power)" [editable]="true" [aria-description]="'press enter to edit ' + power">
+              {{power}}
+              <button matChipRemove type="button" [attr.aria-label]="'remove ' + power">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+            }
+            <input placeholder="New power..." [matChipInputFor]="chipGrid"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="add($event)" />
+          </mat-chip-grid>
+        </mat-form-field>
 
-      <!-- Equipo -->
-      <mat-form-field>
-        <mat-label>Team</mat-label>
-        <input matInput type="text" formControlName="team">
-      </mat-form-field>
+        <!-- Equipo -->
+        <mat-form-field>
+          <mat-label>Team</mat-label>
+          <input matInput type="text" formControlName="team">
+        </mat-form-field>
 
-      <!-- Botones -->
-       <div class="actions-btn">
-         <button mat-raised-button color="primary" type="submit">
-           <span class="marvel-bold">Add hero</span>
-         </button>
+        <!-- Botones -->
+         <div class="actions-btn">
+           <button mat-raised-button color="primary" type="submit">
+             <span class="marvel-bold">Add hero</span>
+           </button>
 
-         <button mat-raised-button color="primary" type="button" class="upload-btn"
-           (click)="fileUpload.click()">
-            <mat-icon>upload</mat-icon>
-            <span>Upload image</span>
-         </button>
-       </div>
-    </div>
+           <button mat-raised-button color="primary" type="button" class="upload-btn"
+             (click)="fileUpload.click()">
+              <mat-icon>upload</mat-icon>
+              <span>Upload image</span>
+           </button>
+         </div>
+      </div>
 
-  </form>
-
-
-</div>
+    </form>
+  </div>
+} @else {
+  <div class="loading-box">
+    <app-loading></app-loading>
+  </div>
+}

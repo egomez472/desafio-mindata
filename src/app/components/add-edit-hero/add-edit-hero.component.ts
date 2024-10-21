@@ -14,6 +14,8 @@ import { HeroesService } from '../../core/services/heroes.service';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
 import { HeroModel } from '../../core/models/hero.model';
 import { UppercaseInputDirective } from '../../shared/directives/uppercase-input.directive';
+import { Router } from '@angular/router';
+import { LoadingService } from '../../core/services/loading.service';
 
 const DEFAULT_IMAGE = 'assets/img/hero-default.png'
 const modules = [
@@ -39,6 +41,8 @@ export class AddEditHeroComponent implements OnInit {
 
   private readonly announcer = inject(LiveAnnouncer);
   private readonly heroesSvc = inject(HeroesService);
+  private readonly router = inject(Router);
+  readonly loadingSvc = inject(LoadingService);
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
   addOnBlur: boolean = true;
@@ -91,6 +95,7 @@ export class AddEditHeroComponent implements OnInit {
 
   async onSubmit(form: FormGroup) {
     if(form.valid) {
+      this.loadingSvc.show();
 
       // Subo el archivo primero a firebase y luego lo seteo al form para enviar al servicio
       if(this.heroImage[0] !== DEFAULT_IMAGE) {
@@ -106,7 +111,13 @@ export class AddEditHeroComponent implements OnInit {
         this.imgControl?.value
       );
 
-      this.heroesSvc.addHero(hero).subscribe();
+      this.heroesSvc.addHero(hero).subscribe(
+        (response) => {
+          if(response.id) {
+            this.router.navigate(['heroes'])
+          }
+        }
+      );
     }
   }
 
