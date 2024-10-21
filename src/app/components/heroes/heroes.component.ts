@@ -16,21 +16,27 @@ import { NgxPaginationModule } from 'ngx-pagination';
 })
 export class HeroesComponent implements OnInit {
 
-  private readonly heroesSvc = inject(HeroesService);
   private readonly router = inject(Router);
+  readonly heroesSvc = inject(HeroesService);
 
-  heroesList = signal<Hero[]>([]);
   p = signal(1);
+  heroesList = this.heroesSvc.heroesList;
+
 
   ngOnInit(): void {
     this.heroesSvc.getHeroes().subscribe((data) => {
-      this.heroesList.set(data);// Actualizo la signal con los héroes recibidos
+      this.heroesSvc.heroesList.set(data)// Actualizo la signal con los héroes recibidos
+      this.heroesSvc.originalHeroesList.set(data);
     });
   }
 
   //#region ngx-pagination functions
   trackById(index: number, hero: any): number {
-    return hero.id;
+    if(hero) {
+      return hero.id;
+    } else {
+      return 0
+    }
   }
 
   onPageChange(newPage: number) {

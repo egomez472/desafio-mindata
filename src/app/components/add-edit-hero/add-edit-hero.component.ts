@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, Signal, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 
 import { CommonModule } from '@angular/common';
@@ -6,13 +6,14 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { MatChipEditedEvent, MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
+import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { HeroesService } from '../../core/services/heroes.service';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
 import { HeroModel } from '../../core/models/hero.model';
+import { UppercaseInputDirective } from '../../shared/directives/uppercase-input.directive';
 
 const DEFAULT_IMAGE = 'assets/img/hero-default.png'
 const modules = [
@@ -23,7 +24,8 @@ const modules = [
   MatInputModule,
   MatChipsModule,
   MatIconModule,
-  MatButtonModule
+  MatButtonModule,
+  UppercaseInputDirective
 ]
 
 @Component({
@@ -101,11 +103,10 @@ export class AddEditHeroComponent implements OnInit {
         this.aliasControl?.value,
         this.powersControl?.value,
         this.teamControl?.value,
-        this.imgControl?.value);
+        this.imgControl?.value
+      );
 
       this.heroesSvc.addHero(hero).subscribe();
-
-      console.log(form.value);
     }
   }
 

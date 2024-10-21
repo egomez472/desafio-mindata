@@ -1,38 +1,56 @@
-.heroes-list {
+.heroes-container {
   display: flex;
-  gap: 0.5rem;
-  flex-flow: wrap;
-  justify-content: center;
-}
+  flex-direction: column;
+  // height: calc(100vh - 136px);
 
-
-.pagination-box {
-  display: flex;
-
-  .my-pagination {
-    margin-left: auto;
-  }
-  ::ng-deep pagination-template {
+  .heroes-list {
     display: flex;
+    gap: 0.5rem;
+    flex-flow: wrap;
     justify-content: center;
-    background-color: black;
+
   }
 
-  .my-pagination ::ng-deep .ngx-pagination {
-    margin: 0;
-    padding-inline: 0;
-    padding: 0.5rem;
+  .no-heroes-box {
     display: flex;
     justify-content: center;
-    .current {
-      background: red;
+    align-items: center;
+
+    span {
+      background-color: black;
+      color: white;
+      padding: 1rem;
+    }
+  }
+
+  .pagination-box {
+    display: flex;
+
+    .my-pagination {
+      margin-left: auto;
+    }
+    ::ng-deep pagination-template {
+      display: flex;
+      justify-content: center;
+      background-color: black;
     }
 
-    a {
-      color: white;
+    .my-pagination ::ng-deep .ngx-pagination {
+      margin: 0;
+      padding-inline: 0;
+      padding: 0.5rem;
+      display: flex;
+      justify-content: center;
+      .current {
+        background: red;
+      }
 
-      &:hover {
-        background-color: #313131;
+      a {
+        color: white;
+
+        &:hover {
+          background-color: #313131;
+        }
       }
     }
   }
