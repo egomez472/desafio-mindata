@@ -9,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
 
+  navigate(url: string) {
+    window.open(url, '_blank'); // Abre la URL en una nueva pestaña
+  }
+
 }
