@@ -33,7 +33,7 @@ const modules = [
   templateUrl: './add-edit-hero.component.html',
   styleUrl: './add-edit-hero.component.scss'
 })
-export class AddHeroComponent implements OnInit {
+export class AddEditHeroComponent implements OnInit {
 
   private readonly announcer = inject(LiveAnnouncer);
   private readonly heroesSvc = inject(HeroesService);
