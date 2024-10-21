@@ -3,7 +3,7 @@
     {
       "id": "1",
       "name": "Peter Parker",
-      "alias": "Spider-Man",
+      "alias": "SPIDER-MAN",
       "powers": [
         "Super strength",
         "Wall-crawling",
@@ -11,12 +11,12 @@
         "Agility"
       ],
       "team": "Avengers",
-      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729308608208?alt=media&token=488b54d5-2d5d-4ce9-9d7d-40706ff17c0d"
+      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729537054531?alt=media&token=c044b4bd-dd1c-44ec-ac05-783570c3d1e7"
     },
     {
       "id": "2",
       "name": "Tony Stark",
-      "alias": "Iron Man",
+      "alias": "IRON MAN",
       "powers": [
         "Genius intellect",
         "Powered armor suit",

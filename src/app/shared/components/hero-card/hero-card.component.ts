@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input} from '@angular/core';
+import { Component, inject, Input, OnInit} from '@angular/core';
 import { Hero } from '../../../core/models/hero.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hero-card',
@@ -11,4 +12,10 @@ import { Hero } from '../../../core/models/hero.model';
 })
 export class HeroCardComponent {
   @Input('hero') hero!: Hero;
+
+  private readonly router = inject(Router)
+
+  onEditHero(hero: Hero) {
+    this.router.navigate(['abm-hero'], {queryParams: {edit: hero.id}})
+  }
 }

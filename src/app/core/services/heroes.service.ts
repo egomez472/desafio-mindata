@@ -13,6 +13,8 @@ export class HeroesService {
   private apiUrl: string = environment.apiUrl;
   private storage: FirebaseStorage = getStorage();
 
+  private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
   public originalHeroesList = signal<Hero[]>([]); // signal que contiene array de heroes original
   public heroesList = signal<Hero[]>([]); // signal que controla el estado de heroes
 
@@ -42,11 +44,18 @@ export class HeroesService {
   }
 
   getHeroes(): Observable<Hero[]> {
-    return this.http.get<Hero[]>(this.apiUrl + '/heroes');
+    return this.http.get<Hero[]>(`${this.apiUrl}/heroes`);
+  }
+
+  getHero(id: string): Observable<Hero> {
+    return this.http.get<Hero>(`${this.apiUrl}/heroes/${id}`, { headers: this.headers })
   }
 
   addHero(hero: HeroModel): Observable<Hero> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<HeroModel>(`${this.apiUrl}/heroes`, hero, { headers });
+    return this.http.post<HeroModel>(`${this.apiUrl}/heroes`, hero, { headers: this.headers });
+  }
+
+  editHero(hero: Hero): Observable<Hero> {
+    return this.http.put<HeroModel>(`${this.apiUrl}/heroes/${hero.id}`, hero)
   }
 }

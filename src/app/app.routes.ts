@@ -8,7 +8,7 @@ export const routes: Routes = [
     canActivate: [heroesGuard]
   },
   {
-    path: 'add-hero',
+    path: 'abm-hero',
     loadComponent: () => import('./components/abm-hero/abm-hero.component').then(c => c.ABMHeroComponent)
   },
   {

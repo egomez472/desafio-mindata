@@ -8,14 +8,14 @@
 
         <!-- Vista previa de la imagen subida -->
         <div class="hero-img-box">
-          <img width="300px" [src]="heroImage[0]" alt="">
+          <img (click)="fileUpload.click()" width="300px" [src]="heroImage[0]" alt="">
         </div>
       </div>
 
 
       <!-- Inputs del fomulario -->
       <div class="inputs-form">
-        <span class="title-form">Add hero</span>
+        <span class="title-form">{{title}}</span>
         <!-- Alias -->
         <mat-form-field>
           <mat-label>Alias</mat-label>
@@ -55,7 +55,7 @@
         <!-- Botones -->
          <div class="actions-btn">
            <button mat-raised-button color="primary" type="submit">
-             <span class="marvel-bold">Add hero</span>
+             <span class="marvel-bold">{{title}}</span>
            </button>
 
            <button mat-raised-button color="primary" type="button" class="upload-btn"
@@ -63,6 +63,13 @@
               <mat-icon>upload</mat-icon>
               <span>Upload image</span>
            </button>
+
+           @if(this.edit !== undefined) {
+            <button mat-raised-button color="warn" type="button" class="upload-btn"
+              (click)="deleteHero()">
+               <span>Delete hero</span>
+            </button>
+          }
          </div>
       </div>
 
