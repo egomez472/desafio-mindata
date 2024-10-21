@@ -11,7 +11,7 @@
         "Agility"
       ],
       "team": "Avengers",
-      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729537054531?alt=media&token=c044b4bd-dd1c-44ec-ac05-783570c3d1e7"
+      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729551130941?alt=media&token=b8f6fadc-00a6-4896-92b1-3e9acb1304e2"
     },
     {
       "id": "2",
@@ -23,7 +23,7 @@
         "Energy repulsors"
       ],
       "team": "Avengers",
-      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729312048378?alt=media&token=7b06f225-82d0-47f7-8827-02c9d8f16cb5"
+      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729551172787?alt=media&token=f30750be-09ec-40e2-af3e-708942019231"
     },
     {
       "id": "3",
@@ -35,7 +35,7 @@
         "Vibranium shield"
       ],
       "team": "Avengers",
-      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729316007841?alt=media&token=4b37ca4b-7152-414c-9a2a-491c4f76dfad"
+      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729551234271?alt=media&token=4f8ef896-e2cb-4b6b-aaf6-20dcc843a00a"
     },
     {
       "id": "4",
@@ -47,7 +47,7 @@
         "Expert marksman"
       ],
       "team": "Avengers",
-      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729316314013?alt=media&token=a81138fa-3e8c-40f7-9635-a8ae6d5fcc1e"
+      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729551249710?alt=media&token=1147b6f1-4142-4d39-8b0f-04e2482ba645"
     },
     {
       "id": "5",
@@ -59,7 +59,7 @@
         "Regeneration"
       ],
       "team": "Avengers",
-      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729318066439?alt=media&token=5993382d-9495-45ad-a179-7485a4e6bc95"
+      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729551260722?alt=media&token=9b69105c-3c56-460f-87e9-c0bb8d125790"
     },
     {
       "id": "6",
@@ -72,7 +72,7 @@
         "Immortality"
       ],
       "team": "Avengers",
-      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729318176148?alt=media&token=b6103d43-f7f0-4953-b54d-544626695ecc"
+      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729551278246?alt=media&token=15cc322f-1bcc-4677-816f-511155344592"
     },
     {
       "id": "7",
@@ -84,7 +84,7 @@
         "Vibranium suit"
       ],
       "team": "Avengers",
-      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729318376881?alt=media&token=9f743803-e1ad-42df-ae99-b22aaa12c992"
+      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729551292477?alt=media&token=7a85b8e7-f66b-4b6c-b438-8c8a2a912b52"
     },
     {
       "id": "8",
@@ -96,7 +96,7 @@
         "Energy blasts"
       ],
       "team": "Avengers",
-      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729318447869?alt=media&token=e2eb25c8-8154-4c56-83b3-62607874abaf"
+      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729551306211?alt=media&token=563174fb-0596-41da-b4f8-8e1f8029fce1"
     },
     {
       "id": "9",
@@ -108,7 +108,7 @@
         "Dimensional travel"
       ],
       "team": "Defenders",
-      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729318507145?alt=media&token=25814e17-89fd-4576-b782-e2a8fd0e9188"
+      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729551318046?alt=media&token=49560a6e-1657-49af-b2d2-d89f460a3266"
     },
     {
       "id": "10",
@@ -120,7 +120,18 @@
         "Expert swordsman"
       ],
       "team": "X-Force",
-      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729318556741?alt=media&token=856e6f35-ada0-4696-93b3-4fd03b9a3c05"
+      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729551330668?alt=media&token=fcec4e2d-8dfb-41f3-bd1c-8b8d81db1a6a"
+    },
+    {
+      "id": "e8a8",
+      "name": "Francis Clinton",
+      "alias": "HAWKEYE",
+      "powers": [
+        "Agility",
+        "Precision"
+      ],
+      "team": "Avengers",
+      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729550961450?alt=media&token=9726abdf-4828-42be-865b-299bea2a99fa"
     }
   ]
 }
