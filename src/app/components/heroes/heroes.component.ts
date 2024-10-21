@@ -2,8 +2,9 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { HeroesService } from '../../core/services/heroes.service';
 import { HeroCardComponent } from '../../shared/components/hero-card/hero-card.component';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { HeroModel } from '../../core/models/hero.model';
+import { Hero, HeroModel } from '../../core/models/hero.model';
 import { CommonModule, NgFor } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-heroes',
@@ -15,10 +16,9 @@ import { CommonModule, NgFor } from '@angular/common';
 export class HeroesComponent implements OnInit {
 
   private readonly heroesSvc = inject(HeroesService);
+  private readonly router = inject(Router);
 
-  heroImage: string | ArrayBuffer | null = null;
-
-  heroesList = signal<HeroModel[]>([]);
+  heroesList = signal<Hero[]>([]);
 
   ngOnInit(): void {
     this.heroesSvc.getHeroes().subscribe((data) => {
@@ -26,17 +26,7 @@ export class HeroesComponent implements OnInit {
     });
   }
 
-
-  uploadImage(event: any) {
-    let file = event.target.files;
-    let reader = new FileReader();
-
-    reader.readAsDataURL(file[0]);
-    reader.onloadend = async () => {
-      let response = await this.heroesSvc.uploadHeroImage(`hero-image_${new Date().getTime()}`, file[0]);
-      console.log(response);
-
-      this.heroImage = response;
-    }
+  navigate(url:string) {
+    this.router.navigate([url])
   }
 }

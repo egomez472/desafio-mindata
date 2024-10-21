@@ -1,9 +1,6 @@
 <div style="display: flex;flex-direction: column;">
 
-  <input id="inputFile" type="file" placeholder="Subir imagen" accept=".jpg, .png, .jpeg" (change)="uploadImage($event)" >
-  <label for="inputFile">Upload image</label>
-
-  <img width="300px" [src]="heroImage" alt="">
+  <button style="width: 100px;" (click)="navigate('add-hero')">Add hero</button>
 
   @if (heroesList().length > 0) {
 

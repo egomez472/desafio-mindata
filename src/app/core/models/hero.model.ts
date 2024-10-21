@@ -1,10 +1,18 @@
 export class HeroModel {
   constructor(
-    public id: number,
     public name: string,
     public alias: string,
     public powers: string[],
     public team: string,
     public img: string
   ) {}
+}
+
+export interface Hero {
+  id?: number;
+  name: string;
+  alias: string;
+  powers: string[];
+  team: string;
+  img?: string;
 }

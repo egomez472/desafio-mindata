@@ -3,8 +3,7 @@ import { provideRouter, withComponentInputBinding, withHashLocation, withViewTra
 
 import { routes } from './app.routes';
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { AngularFireModule } from '@angular/fire/compat';
-import { environment } from './environments/environment';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,6 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withFetch(),
       /*withInterceptors([ErrorResponseInterceptor])*/
-    )
+    ),
+    provideAnimationsAsync()
   ]
 };

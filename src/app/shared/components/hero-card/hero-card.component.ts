@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input} from '@angular/core';
-import { HeroModel } from '../../../core/models/hero.model';
+import { Hero } from '../../../core/models/hero.model';
 
 @Component({
   selector: 'app-hero-card',
@@ -10,5 +10,5 @@ import { HeroModel } from '../../../core/models/hero.model';
   styleUrl: './hero-card.component.scss'
 })
 export class HeroCardComponent {
-  @Input('hero') hero!: HeroModel;
+  @Input('hero') hero!: Hero;
 }

@@ -1,11 +1,80 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
 @import url('https://fonts.googleapis.com/css2?family=Marvel:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* Defino una paleta personalizada de colores negros */
+$black-palette: mat.define-palette((
+  50: #f5f5f5,
+  100: #e0e0e0,
+  200: #bdbdbd,
+  300: #9e9e9e,
+  400: #616161,
+  500: #000000,
+  600: #212121,
+  700: #000000,  // Fondo negro
+  800: #000000,
+  900: #000000,
+  contrast: (
+    50: #ffffff,  // Texto blanco
+    100: #ffffff,
+    200: #ffffff,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,  // Contraste blanco para fondo negro
+    800: #ffffff,
+    900: #ffffff
+  )
+));
+
+/* Defino el tema usando la paleta personalizada */
+$my-dark-theme: mat.define-light-theme((
+  color: (
+    primary: $black-palette,
+    accent: mat.define-palette(mat.$grey-palette),
+    warn: mat.define-palette(mat.$red-palette),
+  ),
+  typography: mat.define-typography-config()  // Uso la tipografía por defecto
+));
+
+/* Incluyo los estilos de Angular Material y agrego mi theme a todos los componentes */
+@include mat.core();
+@include mat.all-component-themes($my-dark-theme);
+
 html, body {
   height: 100%;
   margin: 0;
   font-family: "Marvel", sans-serif;
+  background: linear-gradient(rgb(37 0 0), rgba(255, 255, 255, 0.5)), url('./assets/img/marvel-background.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 span, h1, h2, h3, h4, h5, h6, p {
   font-family: "Marvel", sans-serif;
+}
+
+.marvel-regular {
+  font-family: "Marvel", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.marvel-bold {
+  font-family: "Marvel", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.marvel-regular-italic {
+  font-family: "Marvel", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.marvel-bold-italic {
+  font-family: "Marvel", sans-serif;
+  font-weight: 700;
+  font-style: italic;
 }

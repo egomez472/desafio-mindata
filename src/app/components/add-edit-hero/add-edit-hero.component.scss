@@ -1,0 +1,69 @@
+#inputFile {
+  display: none;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+
+  form {
+    display: flex;
+    gap: 1rem;
+    background-color: #000000d1;
+    padding: 1rem;
+    border-radius: 8px;
+
+    @media(max-width: 870px) {
+      flex-direction: column;
+      max-width: 500px;
+      width: 100%;
+    }
+
+    .hero-picture-box {
+      display: flex;
+      justify-content: center;
+      width: 400px;
+      align-items: center;
+      @media(max-width: 870px) {
+        width: 100%;
+      }
+
+      .hero-img-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        img {
+          border-radius: 8px;
+          width: 100%;
+        }
+
+        .hero-button-upload {
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+
+    .inputs-form {
+      display: flex;
+      flex-direction: column;
+      width: 400px;
+
+      .title-form {
+        font-size: 40px;
+        color: white;
+      }
+
+      @media(max-width: 870px) {
+        width: 100%;
+      }
+    }
+
+    .actions-btn {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+    }
+  }
+}
