@@ -62,16 +62,25 @@ export class ABMHeroComponent implements OnInit {
   ngOnInit(): void {
     if (Boolean(this.edit)) {
       this.title = 'Edit hero'
-      this.heroesSvc.getHero(this.edit).subscribe(hero => {
-        this.idControl?.setValue(hero.id);
-        this.nameControl?.setValue(hero.name);
-        this.aliasControl?.setValue(hero.alias);
-        this.powersControl?.setValue(hero.powers);
-        this.powers.set(hero.powers);
-        this.teamControl?.setValue(hero.team);
-        this.imgControl?.setValue(hero.img);
-        this.heroImage = [hero.img, null]
-      })
+      this.heroesSvc.getHero(this.edit).subscribe(
+        (hero: Hero) => {
+          console.log({hero});
+
+          this.idControl?.setValue(hero.id);
+          this.nameControl?.setValue(hero.name);
+          this.aliasControl?.setValue(hero.alias);
+          this.powersControl?.setValue(hero.powers);
+          this.powers.set(hero.powers);
+          this.teamControl?.setValue(hero.team);
+          this.imgControl?.setValue(hero.img);
+          this.heroImage = [hero.img, null]
+        },
+        (error) => {
+          if(error.status == 404) {
+            this.router.navigate(['heroes']);
+          }
+        }
+      )
     }
 
     this.form = new FormGroup({
