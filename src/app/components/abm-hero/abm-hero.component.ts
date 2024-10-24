@@ -64,14 +64,7 @@ export class ABMHeroComponent implements OnInit {
       this.title = 'Edit hero'
       this.heroesSvc.getHero(this.edit).subscribe(
         (hero: Hero) => {
-          this.idControl?.setValue(hero.id);
-          this.nameControl?.setValue(hero.name);
-          this.aliasControl?.setValue(hero.alias);
-          this.powersControl?.setValue(hero.powers);
-          this.powers.set(hero.powers);
-          this.teamControl?.setValue(hero.team);
-          this.imgControl?.setValue(hero.img);
-          this.heroImage = [hero.img, null]
+          this.loadHero(hero)
         },
         (error) => {
           if(error.status == 404) {
@@ -117,6 +110,17 @@ export class ABMHeroComponent implements OnInit {
       team: new FormControl('', Validators.required),
       img: new FormControl(this.heroImage[0])
     })
+  }
+
+  loadHero(hero: Hero) {
+    this.idControl?.setValue(hero.id);
+    this.nameControl?.setValue(hero.name);
+    this.aliasControl?.setValue(hero.alias);
+    this.powersControl?.setValue(hero.powers);
+    this.powers.set(hero.powers);
+    this.teamControl?.setValue(hero.team);
+    this.imgControl?.setValue(hero.img);
+    this.heroImage = [hero.img, null]
   }
 
   uploadImage(event: any) {
@@ -199,7 +203,6 @@ export class ABMHeroComponent implements OnInit {
       }
     });
   }
-
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
