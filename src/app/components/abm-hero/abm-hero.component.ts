@@ -64,8 +64,6 @@ export class ABMHeroComponent implements OnInit {
       this.title = 'Edit hero'
       this.heroesSvc.getHero(this.edit).subscribe(
         (hero: Hero) => {
-          console.log({hero});
-
           this.idControl?.setValue(hero.id);
           this.nameControl?.setValue(hero.name);
           this.aliasControl?.setValue(hero.alias);
@@ -83,14 +81,7 @@ export class ABMHeroComponent implements OnInit {
       )
     }
 
-    this.form = new FormGroup({
-      id: new FormControl(''),
-      name: new FormControl('', Validators.required),
-      alias: new FormControl('', Validators.required),
-      powers: new FormControl(this.powers(), Validators.required),
-      team: new FormControl('', Validators.required),
-      img: new FormControl(this.heroImage[0])
-    })
+    this.initForm();
   }
 
   get idControl() {
@@ -117,6 +108,17 @@ export class ABMHeroComponent implements OnInit {
     return this.form.get('img');
   }
 
+  initForm() {
+    this.form = new FormGroup({
+      id: new FormControl(''),
+      name: new FormControl('', Validators.required),
+      alias: new FormControl('', Validators.required),
+      powers: new FormControl(this.powers(), Validators.required),
+      team: new FormControl('', Validators.required),
+      img: new FormControl(this.heroImage[0])
+    })
+  }
+
   uploadImage(event: any) {
     let file = event.target.files;
     let reader = new FileReader();
@@ -134,7 +136,6 @@ export class ABMHeroComponent implements OnInit {
 
   async onSubmit(form: FormGroup) {
     if (form.valid) {
-      // this.loadingSvc.show();
       if (Boolean(this.edit)) {
         this.editHero(form.value);
         return;

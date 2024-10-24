@@ -29,6 +29,8 @@
 
       .alias {
         font-size: 50px;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       .name {
@@ -96,6 +98,8 @@
 
         .alias {
           margin-top: auto;
+          text-overflow: unset;
+          overflow: unset;
         }
 
         .name,

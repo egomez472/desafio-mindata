@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { FirebaseStorage, getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Hero, HeroModel } from '../models/hero.model';
 
@@ -19,17 +19,22 @@ export class HeroesService {
   public heroesList = signal<Hero[]>([]); // signal que controla el estado de heroes
 
   public async uploadHeroImage(name: string, file: File | null): Promise<string> {
-    const storageRef = ref(this.storage, name);
-    const metadata = {
-      contentType: file?.type
-    };
+    try {
+      const storageRef = ref(this.storage, name);
+      const metadata = {
+        contentType: file?.type
+      };
 
-    if(file) {
-      let response = await uploadBytes(storageRef, file, metadata).then(() => getDownloadURL(storageRef));
-      return response
+      if(file) {
+        let response = await uploadBytes(storageRef, file, metadata).then(() => getDownloadURL(storageRef));
+        return response
+      }
+
+      return '';
+    } catch (error: any) {
+      throw new Error(`Error subiendo imagen: ${error.message}`)
     }
 
-    return '';
   }
 
   getHeroesByAlias(alias: string) {
@@ -56,10 +61,10 @@ export class HeroesService {
   }
 
   editHero(hero: Hero): Observable<Hero> {
-    return this.http.put<HeroModel>(`${this.apiUrl}/heroes/${hero.id}`, hero)
+    return this.http.put<HeroModel>(`${this.apiUrl}/heroes/${hero.id}`, hero, {headers: this.headers})
   }
 
   deleteHero(heroId: any): any {
-    return this.http.delete<HeroModel>(`${this.apiUrl}/heroes/${heroId}`);
+    return this.http.delete<HeroModel>(`${this.apiUrl}/heroes/${heroId}`, {headers: this.headers});
   }
 }
