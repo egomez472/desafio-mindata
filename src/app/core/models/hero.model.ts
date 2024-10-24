@@ -9,7 +9,7 @@ export class HeroModel {
 }
 
 export interface Hero {
-  id?: number;
+  id?: number | string;
   name: string;
   alias: string;
   powers: string[];

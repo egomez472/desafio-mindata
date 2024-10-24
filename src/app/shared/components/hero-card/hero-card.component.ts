@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Input, OnInit} from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { Hero } from '../../../core/models/hero.model';
 import { Router } from '@angular/router';
 
