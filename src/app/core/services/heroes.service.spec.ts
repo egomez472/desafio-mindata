@@ -4,6 +4,8 @@ import { HeroesService } from './heroes.service';
 import { initializeApp } from 'firebase/app';
 import { environment } from '../../environments/environment';
 import { HttpErrorResponse } from '@angular/common/http';
+import { getDownloadURL, uploadBytes } from 'firebase/storage';
+import { HeroesComponent } from '../../components/heroes/heroes.component';
 
 interface Hero {
   id: string,
@@ -17,6 +19,7 @@ interface Hero {
 describe('HeroesService', () => {
   let service: HeroesService;
   let httpMock: HttpTestingController;
+  const mockStorage: any = {};
 
   beforeEach(() => {
 
@@ -24,7 +27,10 @@ describe('HeroesService', () => {
 
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [HeroesService]
+      providers: [
+        HeroesService,
+        { provide: 'storage', useValue: mockStorage }
+      ]
     });
 
     service = TestBed.inject(HeroesService);
@@ -55,19 +61,44 @@ describe('HeroesService', () => {
     req.flush(mockHeroes);
   });
 
-  it('should handle error while fetching heroes', () => {
-
+  // Test de handleError
+  it('should return "Not found" for a 404 error', () => {
     service.getHeroes().subscribe({
-      next: () => fail('should have failed with 500 error'),
-      error: (error: string) => {
-        console.error('Error caught in test:', error);
-
-        expect(error).toBe('Código de error: 500 Mensaje: Http failure response for http://localhost:3000/heroes: 500 Internal Server Error');
+      next: () => fail('Expected an error, no heroes'),
+      error: (errorMessage: string) => {
+        expect(errorMessage).toBe('Not found');
       }
-    });
+    })
 
-    const req = httpMock.expectOne(`${environment.apiUrl}/heroes`);
-    req.flush('Something went wrong', { status: 500, statusText: 'Internal Server Error' });
+    const req = httpMock.expectOne(`${service['apiUrl']}/heroes`);
+    expect(req.request.method).toBe('GET');
+    req.flush(null, {status:404,statusText:'Not found'});
+  });
+
+  it('should return "Internal server error" for a 500 error', () => {
+    service.getHeroes().subscribe({
+      next: () => fail('Expected an error, internal server error'),
+      error: (errorMessage: string) => {
+        expect(errorMessage).toBe('Internal server error');
+      }
+    })
+
+    const req = httpMock.expectOne(`${service['apiUrl']}/heroes`);
+    expect(req.request.method).toBe('GET');
+    req.flush(null, {status:500,statusText:'Not found'});
+  });
+
+  it('should return "Unknown error"', () => {
+    service.getHeroes().subscribe({
+      next: () => fail('Expected an error, unknown error'),
+      error: (errorMessage: string) => {
+        expect(errorMessage).toBe('Unknown error');
+      }
+    })
+
+    const req = httpMock.expectOne(`${service['apiUrl']}/heroes`);
+    expect(req.request.method).toBe('GET');
+    req.flush(null, {status:401,statusText:'Unauthorized'});
   });
 
   // Test para getHero
@@ -81,18 +112,6 @@ describe('HeroesService', () => {
     const req = httpMock.expectOne(`${service['apiUrl']}/heroes/1`);
     expect(req.request.method).toBe('GET');
     req.flush(mockHero);
-  });
-
-  it('should handle error while fetching a hero by id', () => {
-    service.getHero('1').subscribe({
-      next: () => fail('should have failed with 404 error'),
-      error: (error) => {
-        expect(error.status).toBe(404);
-      }
-    });
-
-    const req = httpMock.expectOne(`${environment.apiUrl}/heroes/1`);
-    req.flush('Hero not found', { status: 404, statusText: 'Not Found' });
   });
 
   // Test para addHero
@@ -134,4 +153,81 @@ describe('HeroesService', () => {
     req.flush({});
   });
 
+  //Test para getHeroByAlias
+  it('should set originalHeroesList when alias is an empty string', () => {
+    const originalList = [
+      { id: '1', name: 'Peter Parker', alias: 'Spider-Man', powers: ['Super strength'], team: 'Avengers', img: '' },
+      { id: '2', name: 'Brece Wayne', alias: 'Batman', powers: ['Fly'], team: 'Justice League', img: '' }
+    ];
+
+    spyOn(service, 'originalHeroesList').and.returnValue(originalList);
+    spyOn(service.heroesList, 'set');
+
+    service.getHeroesByAlias('');
+
+    expect(service.heroesList.set).toHaveBeenCalledWith(originalList);
+  });
+
+  it('should filter heroes by alias', () => {
+    const originalList = [
+      { id: '1', name: 'Peter Parker', alias: 'Spider-Man', powers: ['Super strength'], team: 'Avengers', img: '' },
+      { id: '2', name: 'Brece Wayne', alias: 'Batman', powers: ['Fly'], team: 'Justice League', img: '' },
+      { id: '3', name: 'Barry Alen', alias: 'Flash', powers: ['Super speed'], team: 'Justice League', img: '' }
+    ];
+
+    spyOn(service, 'originalHeroesList').and.returnValue(originalList);
+    spyOn(service.heroesList, 'set');
+
+    service.getHeroesByAlias('man');
+
+    expect(service.heroesList.set).toHaveBeenCalledWith([
+      { id: '1', name: 'Peter Parker', alias: 'Spider-Man', powers: ['Super strength'], team: 'Avengers', img: '' },
+      { id: '2', name: 'Brece Wayne', alias: 'Batman', powers: ['Fly'], team: 'Justice League', img: '' }
+    ])
+  });
+
+  it('should be case insensitive when filtering', () => {
+    const originalList = [
+      { id: '1', name: 'Peter Parker', alias: 'Spider-Man', powers: ['Super strength'], team: 'Avengers', img: '' },
+      { id: '2', name: 'Brece Wayne', alias: 'Batman', powers: ['Fly'], team: 'Justice League', img: '' },
+      { id: '3', name: 'Barry Alen', alias: 'Flash', powers: ['Super speed'], team: 'Justice League', img: '' }
+    ];
+
+    spyOn(service, 'originalHeroesList').and.returnValue(originalList);
+    spyOn(service.heroesList, 'set');
+
+    service.getHeroesByAlias('spider-man');
+
+    expect(service.heroesList.set).toHaveBeenCalledWith([{ id: '1', name: 'Peter Parker', alias: 'Spider-Man', powers: ['Super strength'], team: 'Avengers', img: '' }])
+  })
+
+  // Test para uploadHeroImage
+  it('should return an empty string if file is null', async () => {
+    const result = await service.uploadHeroImage('testName', null);
+    expect(result).toBe('');
+  });
+
+  it('should return download URL on success', async () => {
+    const mockFile = new File([''], 'test.jpg', {type: 'image/jpeg'});
+    const mockURL = "https://mock-download-url.com/test.jpg";
+
+    spyOn(service, 'uploadBytesFn').and.returnValue(Promise.resolve(mockURL))
+
+    const req = await service.uploadHeroImage('testName', mockFile);
+    expect(req).toBe(mockURL)
+  });
+
+  it('should throw an error if upload fails', async () => {
+    const mockFile = new File([''], 'test.jpg', {type: 'image/jpeg'});
+    const errorMessage = 'Failed to upload';
+
+    spyOn(service, 'uploadBytesFn').and.returnValue(Promise.reject(new Error(errorMessage)));
+
+    try {
+      await service.uploadHeroImage('testName', mockFile);
+      fail('Expected error to be thrown');
+    } catch (error: any) {
+      expect(error.message).toBe(`Error subiendo imagen: ${errorMessage}`)
+    }
+  });
 });

@@ -45,10 +45,10 @@ export class ABMHeroComponent implements OnInit {
   @Input('edit') edit: string = '';
   @Input('action') action!: string;
 
-  private readonly announcer = inject(LiveAnnouncer);
   private readonly heroesSvc = inject(HeroesService);
   private readonly router = inject(Router);
   private readonly dialog = inject(MatDialog);
+  announcer = inject(LiveAnnouncer);
 
   readonly loadingSvc = inject(LoadingService);
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
@@ -160,8 +160,6 @@ export class ABMHeroComponent implements OnInit {
       response => {
         if (response.id) {
           this.router.navigate(['heroes'])
-        } else {
-          throw new Error('Ocurrio un error al editar el heroe')
         }
       }
     )

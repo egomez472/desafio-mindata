@@ -1,6 +1,6 @@
-# Desafío técnico para Mindata
+# Documentación
 
-Proyecto creado con Angular 17
+Proyecto creado con Angular 17 en la cual se realiza un CRUD (Create, Reed, Update and Remove) de heroes con un Listado de los mismos.
 
 `
   Datos al bucket de firebase en environments/environment.ts (por favor no compartir)
@@ -16,6 +16,9 @@ Proyecto creado con Angular 17
 - Material Angular (tema personalizado styles.scss)
 - Directiva para inputs (UpperCase)
 - Componente reutilizable (Component Input Binding)
+- Proyecto con unit test en un __97.40%__ (statements: 91.57%, branches: 79.41%, functions: 92.95%, lines: 91.66%).
+
+![alt text](image.png)
 
 ---
 
@@ -27,10 +30,11 @@ Proyecto creado con Angular 17
 4. Correr el comando `npm start` para que se inice el proyecto y se abra automaticamente en su navegador predeterminado.
 
 #### Para correr los test
-1. Ejecutar el comando `npm run test` en la terminal, ubhicado en la carpeta raiz del proyecto.
+1. Ejecutar el comando `npm run test --code-coverage` en la terminal, ubhicado en la carpeta raiz del proyecto.
 
 ---
 
+## ***Arquitectura del proyecto***
 ### Componentes
 
 `src/app/components`
@@ -41,8 +45,6 @@ Proyecto creado con Angular 17
 - ***Header*** que contiene buscador de heroes
 - ***Footer*** que contiene link del repositorio de github
 - ***Loading*** componente de carga para usar con el interceptor
-
----
 
 ### Core
 
@@ -60,8 +62,6 @@ Proyecto creado con Angular 17
 
 #### Models
 - ***HeroModel*** - Contiene interface Hero y class HeroModel
-
----
 
 ### Shared
 `src/app/shared`

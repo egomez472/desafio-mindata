@@ -121,17 +121,6 @@
       ],
       "team": "X-Force",
       "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729551330668?alt=media&token=fcec4e2d-8dfb-41f3-bd1c-8b8d81db1a6a"
-    },
-    {
-      "id": "e8a8",
-      "name": "Francis Clinton",
-      "alias": "HAWKEYE",
-      "powers": [
-        "Agility",
-        "Precision"
-      ],
-      "team": "Avengers",
-      "img": "https://firebasestorage.googleapis.com/v0/b/heroes-proyect-b95d8.appspot.com/o/hero-image_1729550961450?alt=media&token=9726abdf-4828-42be-865b-299bea2a99fa"
     }
   ]
 }

@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HeaderComponent } from './header.component';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HeroesService } from '../../core/services/heroes.service';
-import { of } from 'rxjs';
+import { of, Subject } from 'rxjs';
 
 class MockRouter {
   events = of(); // Simulamos los eventos del router
@@ -60,11 +60,14 @@ describe('HeaderComponent', () => {
   });
 
   it('should set routePath on router event', () => {
+    const eventsSubject = new Subject<any>();
+    (mockRouter.events as any)= eventsSubject.asObservable();
+
     mockRouter.url = '/heroes';
     component.ngOnInit();
-    mockRouter.events.subscribe(() => {
-      expect(component.routePath).toBe('/heroes');
-    });
+
+    eventsSubject.next(new NavigationEnd(0, '/heroes', 'heroes'));
+    expect(component.routePath).toBe('/heroes');
   });
 
   it('should call getHeroesByAlias on searchControl value changes', async () => {

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
 import { Component } from '@angular/core';
 import { Hero } from '../../core/models/hero.model';
+import { C } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-hero-card',
@@ -82,4 +83,11 @@ describe('HeroesComponent', () => {
     const noHeroesElement = fixture.debugElement.nativeElement.querySelector('.no-heroes-box');
     expect(noHeroesElement).toBeTruthy();
   });
+
+  it('should navigate to correct route when navigate is called', () => {
+    const url = 'abm-hero';
+    component.navigate('abm-hero');
+
+    expect(routerMock.navigate).toHaveBeenCalledWith([url]);
+  })
 });
