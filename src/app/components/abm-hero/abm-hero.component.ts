@@ -60,6 +60,8 @@ export class ABMHeroComponent implements OnInit {
   heroImage: any[] = [DEFAULT_IMAGE, null];
 
   ngOnInit(): void {
+    this.initForm();
+
     if (Boolean(this.edit)) {
       this.title = 'Edit hero'
       this.heroesSvc.getHero(this.edit).subscribe(
@@ -73,8 +75,6 @@ export class ABMHeroComponent implements OnInit {
         }
       )
     }
-
-    this.initForm();
   }
 
   get idControl() {
@@ -113,14 +113,16 @@ export class ABMHeroComponent implements OnInit {
   }
 
   loadHero(hero: Hero) {
-    this.idControl?.setValue(hero.id);
-    this.nameControl?.setValue(hero.name);
-    this.aliasControl?.setValue(hero.alias);
-    this.powersControl?.setValue(hero.powers);
+    this.form?.patchValue({
+      id: hero.id,
+      name: hero.name,
+      alias: hero.alias,
+      powers: hero.powers,
+      team: hero.team,
+      img: hero.img
+    });
     this.powers.set(hero.powers);
-    this.teamControl?.setValue(hero.team);
-    this.imgControl?.setValue(hero.img);
-    this.heroImage = [hero.img, null]
+    this.heroImage = [hero.img, null];
   }
 
   uploadImage(event: any) {
@@ -141,7 +143,7 @@ export class ABMHeroComponent implements OnInit {
   async onSubmit(form: FormGroup) {
     if (form.valid) {
       if (Boolean(this.edit)) {
-        this.editHero(form.value);
+        await this.editHero(form.value);
         return;
       }
 
@@ -189,18 +191,25 @@ export class ABMHeroComponent implements OnInit {
   }
 
   deleteHero(hero: Hero) {
-    const dialogRef = this.dialog.open(AbmDialogComponent);
+    console.log('Opening dialog');
+    this.dialog.open(AbmDialogComponent, {})
+      .afterClosed()
+      .subscribe(result => {
 
-    dialogRef.afterClosed().subscribe(result => {
-      if(result && Boolean(hero.id)) {
-        this.heroesSvc.deleteHero(hero.id).subscribe(
-          (response: any) => {
-            if(response) {
-              this.router.navigate(['heroes']);
+        console.log('Dialog closed with result:', result);
+
+        if(result && Boolean(hero.id)) {
+          console.log('Deleting hero with id:', hero.id);
+
+          this.heroesSvc.deleteHero(hero.id).subscribe(
+            (response: any) => {
+              console.log('Hero deleted, response:', response);
+              if(response) {
+                this.router.navigate(['heroes']);
+              }
             }
-          }
-        )
-      }
+          )
+        }
     });
   }
 

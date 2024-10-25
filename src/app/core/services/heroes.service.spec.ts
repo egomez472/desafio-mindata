@@ -3,6 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { HeroesService } from './heroes.service';
 import { initializeApp } from 'firebase/app';
 import { environment } from '../../environments/environment';
+import { HttpErrorResponse } from '@angular/common/http';
 
 interface Hero {
   id: string,
@@ -54,6 +55,21 @@ describe('HeroesService', () => {
     req.flush(mockHeroes);
   });
 
+  it('should handle error while fetching heroes', () => {
+
+    service.getHeroes().subscribe({
+      next: () => fail('should have failed with 500 error'),
+      error: (error: string) => {
+        console.error('Error caught in test:', error);
+
+        expect(error).toBe('Código de error: 500 Mensaje: Http failure response for http://localhost:3000/heroes: 500 Internal Server Error');
+      }
+    });
+
+    const req = httpMock.expectOne(`${environment.apiUrl}/heroes`);
+    req.flush('Something went wrong', { status: 500, statusText: 'Internal Server Error' });
+  });
+
   // Test para getHero
   it('should retrieve a hero by id (GET)', () => {
     const mockHero: Hero = { id: '1', name: 'Peter Parker', alias: 'Spider-Man', powers: ['Super strength'], team: 'Avengers', img: '' };
@@ -65,6 +81,18 @@ describe('HeroesService', () => {
     const req = httpMock.expectOne(`${service['apiUrl']}/heroes/1`);
     expect(req.request.method).toBe('GET');
     req.flush(mockHero);
+  });
+
+  it('should handle error while fetching a hero by id', () => {
+    service.getHero('1').subscribe({
+      next: () => fail('should have failed with 404 error'),
+      error: (error) => {
+        expect(error.status).toBe(404);
+      }
+    });
+
+    const req = httpMock.expectOne(`${environment.apiUrl}/heroes/1`);
+    req.flush('Hero not found', { status: 404, statusText: 'Not Found' });
   });
 
   // Test para addHero

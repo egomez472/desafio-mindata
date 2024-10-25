@@ -1,12 +1,9 @@
-import { Component, computed, EventEmitter, inject, Input, OnInit, Output, signal } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { HeroesService } from '../../core/services/heroes.service';
 import { HeroCardComponent } from '../../shared/components/hero-card/hero-card.component';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { Hero, HeroModel } from '../../core/models/hero.model';
 import { CommonModule, NgFor } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { delay, take } from 'rxjs';
 import { LoadingService } from '../../core/services/loading.service';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
 

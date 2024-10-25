@@ -14,6 +14,8 @@ export class AbmDialogComponent {
   private readonly dialogRef = inject(MatDialogRef<AbmDialogComponent>)
 
   confirm() {
+    console.log('ejecuta confirm');
+
     this.dialogRef.close(true);
   }
 

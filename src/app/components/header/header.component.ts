@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
       this.routePath = this.router.url;
     });
 
-    this.searchControl.valueChanges.pipe(debounceTime(0)).subscribe(
+    this.searchControl.valueChanges.subscribe(
       (alias) => {
         this.heroesSvc.getHeroesByAlias(alias ? alias : '')
       }
@@ -40,9 +40,12 @@ export class HeaderComponent implements OnInit {
     return this.routePath.includes('/heroes');
   }
 
-  navigate(url: string, params?: number) {
-    params ? this.router.navigate([url], {queryParams: {page: params}}) :
-    this.router.navigate([url]);
+  navigate(url: string, params: number | null = null) {
+    if(params !== null) {
+      this.router.navigate([`${url}?page=${params}`]);
+    } else {
+      this.router.navigate([url]);
+    }
   }
 
 }

@@ -10,7 +10,7 @@ import { Hero } from '../../core/models/hero.model';
 
 @Component({
   selector: 'app-hero-card',
-  template: ''
+  template: '<div>{{hero}}</div>'
 })
 class MockHeroCardComponent {}
 
@@ -44,6 +44,16 @@ describe('HeroesComponent', () => {
 
   it('should create the component', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should return hero id when hero is provided', () => {
+    const hero = { id: 1, name: 'Hero 1' };
+    expect(component.trackById(hero)).toBe(1);
+  });
+
+  it('should return 0 when no hero is provided', () => {
+    expect(component.trackById(null)).toBe(0);
+    expect(component.trackById(undefined)).toBe(0);
   });
 
   it('should handle page change', () => {

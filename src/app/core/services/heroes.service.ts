@@ -1,7 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { FirebaseStorage, getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
-import { Observable, throwError } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Hero, HeroModel } from '../models/hero.model';
 
@@ -48,8 +48,22 @@ export class HeroesService {
     }
   }
 
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    let errorMessage = 'Error desconocido';
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      errorMessage = `Código de error: ${error.status} Mensaje: ${error.message}`;
+    }
+    console.error(errorMessage);
+    return throwError(errorMessage);
+  }
+
   getHeroes(): Observable<Hero[]> {
-    return this.http.get<Hero[]>(`${this.apiUrl}/heroes`);
+    return this.http.get<Hero[]>(`${this.apiUrl}/heroes`)
+    .pipe(
+      catchError(this.handleError)
+    );;
   }
 
   getHero(id: string): Observable<Hero> {
